@@ -14,12 +14,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      # 新增的步骤：配置SSH私钥
+      - name: Configure SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      # 修改的步骤：使用SSH方式检出
+      - name: Checkout repository with submodules
         uses: actions/checkout@v4
         with:
-          # 这一步至关重要，它会同时拉取主项目和子模块（你的笔记）
           submodules: 'recursive'
-          fetch-depth: 0
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
