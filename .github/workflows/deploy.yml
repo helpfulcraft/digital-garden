@@ -14,11 +14,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository with submodules
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # 这一步至关重要，它会同时拉取主项目和子模块（你的笔记）
           submodules: 'recursive'
+          # 使用我们配置的 SSH 私钥来拉取私有子模块
+          ssh-key: ${{ secrets.SUBMODULE_SSH_PRIVATE_KEY }}
+          fetch-depth: 0
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
