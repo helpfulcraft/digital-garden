@@ -16,7 +16,7 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     locale: "en-US",
-    baseUrl: "helpfulcraft.github.io/digital-garden", // ⚠️ 必须修改成你的！
+    baseUrl: "https://helpfulcraft.github.io/digital-garden", // ⚠️ 必须修改成你的！
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
